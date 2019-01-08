@@ -3,11 +3,7 @@ import java.util.HashMap;
 public class Personnage {
 
     private String name;
-    private int level;
-    private int agility;
-    private int stamina;
-    private int exp;
-    private HashMap<String, Integer> caracs;
+    private HashMap<Characteristics, Integer> caracs;
 
 
 
@@ -15,18 +11,23 @@ public class Personnage {
         caracs = new HashMap<>();
 
         this.name = name;
-        caracs.put("AGILITY", agility);
-        caracs.put("STAMINA", stamina);
-        caracs.put("LEVEL", 0);
+        caracs.put(Characteristics.Agility, agility);
+        caracs.put(Characteristics.Stamina, stamina);
+        caracs.put(Characteristics.Level, 0);
+
         setExp(exp);
     }
 
+    public Integer get(Characteristics key) {
+        return caracs.get(key);
+    }
+
     public int getLevel() {
-        return caracs.get("LEVEL");
+        return caracs.get(Characteristics.Level);
     }
 
     public int getAgility() {
-        return caracs.get("AGILITY");
+        return caracs.get(Characteristics.Agility);
     }
 
     public String getName() {
@@ -34,37 +35,33 @@ public class Personnage {
     }
 
     public int getStamina() {
-        return caracs.get("STAMINA");
+        return caracs.get(Characteristics.Stamina);
     }
 
     public int getExp() {
-        return caracs.get("EXP");
+        return caracs.get(Characteristics.Exp);
     }
 
     public void setLevel(int level) {
-        caracs.put("LEVEL", level);
+        caracs.put(Characteristics.Level, level);
     }
 
     public void setAgility(int agility) {
-        caracs.put("AGILITY", agility);
+        caracs.put(Characteristics.Agility, agility);
     }
 
     public void setExp(int exp) {
         Integer get;
-        if(caracs.get("EXP") != null) {
-            get = caracs.get("EXP");
+        if(caracs.get(Characteristics.Level) != null) {
+            get = caracs.get(Characteristics.Level);
             get += exp;
 
         }else {
             get = exp;
         }
 
-        caracs.put("EXP", get);
+        caracs.put(Characteristics.Level, get);
         setLevel(get / 1000);
-    }
-
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
     }
 
     public String toString() {
